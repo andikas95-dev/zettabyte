@@ -118,12 +118,12 @@ class blogController {
     
     async getHomepage(req,res){
         async function getInParallel(apiCalls) { 
-            let data =[]
-            for(let i = 0 ; i <apiCalls.length; i++){
-                data.push(apiCalls[i]())
-            }
-            const result = Promise.all(data)
-            return result
+            let data = apiCalls.map((el) => {
+                return el()
+              })
+              return Promise.all(data).then((result) => {
+                return result
+              })
             } 
             let promise = getInParallel([() => Promise.resolve( blogService.getAll()), 
             () => Promise.resolve(blogService.getPopuler())]); 
