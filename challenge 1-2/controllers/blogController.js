@@ -1,6 +1,7 @@
 const {blog} = require('../models/index'); // Import campaign and history
 const blogService = require('../service/blogService') 
 class blogController {
+    // CHALLENGE 2
     async create(req, res){
         try {
             let createBlog = await blog.create({
@@ -115,7 +116,7 @@ class blogController {
         })
        }
     }
-    
+    // CHALENGE 3
     async getHomepage(req,res){
         async function getInParallel(apiCalls) { 
             let data = apiCalls.map((el) => {
