@@ -1,14 +1,18 @@
 const {
     check,
-    validationResult
-  } = require('express-validator')
-const blog = require('../models').blog
+    validationResult,
+    matchedData,
+    sanitize
+  } = require('express-validator') //form validation & sanitize form params
+const {blog} = require('../models/index')
 
 module.exports = {
    create:[
-       check('nameBlog', 'must be fill').isString().notEmpty(),
+       check('nameBlog', 'must be fill, min 5 and max 35 character').isString().notEmpty().isLength({
+        min: 5,
+        max: 35
+      }),
        check('descriptionBlog','must be fill').isString().notEmpty(),
-       check('dateBlog','the format is (yyyy-mm-dd)').isDate().notEmpty(),
        (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -36,9 +40,11 @@ module.exports = {
         throw new Error(e)
       }
     }),
-    check('nameBlog', 'must be fill').isString().notEmpty(),
+    check('nameBlog', 'must be fill must be fill, min 5 and max 35 character').isString().notEmpty().isLength({
+      min: 5,
+      max: 35
+    }),
     check('descriptionBlog','must be fill').isString().notEmpty(),
-    check('dateBlog','the format is (yyyy-mm-dd)').isDate().notEmpty(),
     (req, res, next) => {
      const errors = validationResult(req);
      if (!errors.isEmpty()) {
