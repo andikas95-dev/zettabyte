@@ -7,6 +7,8 @@ router.post('/create', blogValidator.create, blogController.create);
 router.put('/update/:_id', blogValidator.update, blogController.update);
 router.get('/getAll',  blogController.getAll);
 router.get('/getOne/:_id', blogValidator.getOne, blogController.getOne);
+router.get('/getPopuler', blogController.getPopuler)
+router.get('/getHomepage', blogController.getHomepage)
 router.delete('/delete/:_id',blogValidator.delete, blogController.delete);
 
 module.exports = router;

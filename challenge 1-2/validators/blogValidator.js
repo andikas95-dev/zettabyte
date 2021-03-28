@@ -1,6 +1,8 @@
 const {
     check,
-    validationResult
+    validationResult,
+    matchedData,
+    sanitize
   } = require('express-validator')
 const blog = require('../models').blog
 
@@ -8,7 +10,6 @@ module.exports = {
    create:[
        check('nameBlog', 'must be fill').isString().notEmpty(),
        check('descriptionBlog','must be fill').isString().notEmpty(),
-       check('dateBlog','the format is (yyyy-mm-dd)').isDate().notEmpty(),
        (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -38,7 +39,6 @@ module.exports = {
     }),
     check('nameBlog', 'must be fill').isString().notEmpty(),
     check('descriptionBlog','must be fill').isString().notEmpty(),
-    check('dateBlog','the format is (yyyy-mm-dd)').isDate().notEmpty(),
     (req, res, next) => {
      const errors = validationResult(req);
      if (!errors.isEmpty()) {

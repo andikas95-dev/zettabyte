@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const blogRoutes = require ('./routes/blogRouter')
 const cors = require('cors');
 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json()); // SUPPORT JSON ENCODED BODIES
 app.use(bodyParser.urlencoded({
   extended: true
-}));
+})); // SUPPORT ENCODED BODIES
 
 app.use(express.static('public'));
 

@@ -17,7 +17,13 @@ const blogSchema = new mongoose.Schema({
         type: Date,
         required: false,
         default: null
-    }
+    },
+    view:{
+        type: Number,
+        required: false,
+        default: 0
+    },
+    
 }, {
     timestamps: {
         createdAt: 'created_at',
